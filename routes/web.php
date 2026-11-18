@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 Route::redirect('/', '/dashboard');
 
@@ -20,4 +21,6 @@ Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 });
 
-    Route::resource('expenses', ExpenseController::class);
+Route::resource('expenses', ExpenseController::class);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
